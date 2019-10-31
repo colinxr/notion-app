@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/api/notion', methods=['POST'])
 def create_row():
-    if not request.form or not 'company' in request.form:
+    if not request.form:
         abort(400)
 
     company = request.form['company']

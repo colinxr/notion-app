@@ -1,5 +1,4 @@
 from flask import Flask, request, abort, jsonify
-from flask_cors import CORS, cross_origin
 from notion.client import NotionClient
 from notion.block import TextBlock
 
@@ -8,16 +7,13 @@ import json
 
 app = Flask(__name__)
 
-cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route('/')
-@cross_origin()
 def hello():
     return "Hello, Flask!"
 
 @app.route('/api/notion', methods=['POST'])
-@cross_origin()
 def create_row():
     if not request.form:
         abort(400)
@@ -37,8 +33,9 @@ def create_row():
     row.contact = contact
     row.email = email
     row.children.add_new(TextBlock, title=desc)
-
-    return jsonify({'done': 'true'}), 201
+    response = jsonify({'done': 'true'}), 201
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    return response
 
 if __name__ == '__main__':
     app.run()

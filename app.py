@@ -8,11 +8,11 @@ import json
 app = Flask(__name__)
 
 
-@app.route("/")
+@app.route("/NotionApp/")
 def hello():
     return "Hello, Flask!"
 
-@app.route('/api/notion', methods=['POST'])
+@app.route('/NotionApp/api/notion', methods=['POST'])
 def create_row():
     if not request.form:
         abort(400)

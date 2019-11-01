@@ -1,4 +1,5 @@
 from flask import Flask, request, abort, jsonify
+from flask_cors import CORS, cross_origin
 from notion.client import NotionClient
 from notion.block import TextBlock
 
@@ -7,6 +8,8 @@ import json
 
 app = Flask(__name__)
 
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 @app.route("/")
 def hello():

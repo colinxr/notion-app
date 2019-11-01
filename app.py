@@ -11,11 +11,13 @@ app = Flask(__name__)
 cors = CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route("/")
+@app.route('/')
+@cross_origin()
 def hello():
     return "Hello, Flask!"
 
 @app.route('/api/notion', methods=['POST'])
+@cross_origin()
 def create_row():
     if not request.form:
         abort(400)

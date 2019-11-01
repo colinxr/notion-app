@@ -12,7 +12,7 @@ app = Flask(__name__)
 def hello():
     return "Hello, Flask!"
 
-@app.route('/api/notion/', methods=['POST'])
+@app.route('/api/notion', methods=['POST'])
 def create_row():
     if not request.form:
         abort(400)

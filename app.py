@@ -7,6 +7,11 @@ import json
 
 app = Flask(__name__)
 
+
+@app.route("/")
+def hello():
+    return "Hello, Flask!"
+
 @app.route('/api/notion', methods=['POST'])
 def create_row():
     if not request.form:
@@ -29,5 +34,6 @@ def create_row():
     row.children.add_new(TextBlock, title=desc)
 
     return jsonify({'done': 'true'}), 201
+
 if __name__ == '__main__':
     app.run(debug=True)

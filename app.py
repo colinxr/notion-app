@@ -7,12 +7,11 @@ import json
 
 app = Flask(__name__)
 
-app.config['CORS_HEADERS'] = 'Content-Type'
-
 @app.route('/')
 def hello():
     return "Hello, Flask!"
 
+# @crossdomain(origin='*', headers=['access-control-allow-origin', 'Content-Type'])
 @app.route('/api/notion', methods=['POST'])
 def create_row():
     if not request.form:
@@ -33,9 +32,8 @@ def create_row():
     row.contact = contact
     row.email = email
     row.children.add_new(TextBlock, title=desc)
-    response = jsonify({'done': 'true'}), 201
-    response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+
+    return jsonify({'done': 'true'}), 201
 
 if __name__ == '__main__':
     app.run()

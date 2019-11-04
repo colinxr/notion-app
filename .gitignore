@@ -30,3 +30,6 @@ Thumbs.db
 *~
 .~*#
 .*.swp
+venv
+.vscode
+__pycache__

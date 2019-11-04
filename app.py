@@ -16,7 +16,7 @@ def hello():
 def create_row():
     # raise exception(request)
     if not request.form:
-        abort(400)
+        abort(400, 'it broke dood')
 
     company = request.form.get('company')
     contact = request.form.get('contact')

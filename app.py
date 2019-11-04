@@ -21,7 +21,7 @@ def create_row():
         # abort(400, 'it broke dood')
 
 
-    return content, 201
+    return jsonify({'request': request}), 201
 
     # company = request.form.get('company')
     # contact = request.form.get('contact')

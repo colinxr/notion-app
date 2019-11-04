@@ -14,6 +14,7 @@ def hello():
 # @crossdomain(origin='*', headers=['access-control-allow-origin', 'Content-Type'])
 @app.route('/api/notion', methods=['POST'])
 def create_row():
+    # raise exception(request)
     if not request.form:
         abort(400)
 
@@ -36,4 +37,4 @@ def create_row():
     return jsonify({'done': 'true'}), 201
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()

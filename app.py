@@ -18,10 +18,10 @@ def create_row():
     if not request.form:
         abort(400)
 
-    company = request.form['company']
-    contact = request.form['contact']
-    email = request.form['email']
-    desc = request.form['description']
+    company = request.form.get('company')
+    contact = request.form.get('contact')
+    email = request.form.get('email')
+    desc = request.form.get('description')
 
     client = NotionClient(
         token_v2="9a77f433e1fd89ba5ead35ecc8c1e4d446398843d213840a309f9fd51032aeab94e9da37b9fcf73699f99c5fcfb9281e3431d558cfa80cf4b070eba9fe30b3302d5d53f4f071b8096513708dee9b")

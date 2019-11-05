@@ -14,10 +14,8 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 @app.route('/',  methods=['GET'])
 @cross_origin()
 def hello():
- return jsonify({'done': 'true'}), 201
+    return jsonify({'done': 'true'}), 201
 
-
-# @crossdomain(origin='*', headers=['access-control-allow-origin', 'Content-Type'])
 @app.route('/api/notion', methods=['POST'])
 @cross_origin()
 def create_row():
@@ -46,6 +44,11 @@ def create_row():
     row.children.add_new(TextBlock, title=desc)
 
     return jsonify({'done': 'true'}), 201
+
+@app.errorhandler(404)
+def page_not_found(error):
+    return 'This route does not exist {}'.format(request.url), 404
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

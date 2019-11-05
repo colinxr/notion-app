@@ -20,8 +20,7 @@ def hello():
 @cross_origin()
 def create_row():
     content = request.get_json()
-
-    print(content)
+    
     company = content.get('company')
     contact = content.get('contact')
     email = content.get('email')

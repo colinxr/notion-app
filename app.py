@@ -11,15 +11,10 @@ import json
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
 
-@app.route('/')
+@app.route('/',  methods=['GET'])
+@cross_origin()
 def hello():
-    client = NotionClient(
-        token_v2="9a77f433e1fd89ba5ead35ecc8c1e4d446398843d213840a309f9fd51032aeab94e9da37b9fcf73699f99c5fcfb9281e3431d558cfa80cf4b070eba9fe30b3302d5d53f4f071b8096513708dee9b")
-    cv = client.get_collection_view(
-        'https://www.notion.so/madebyarticle/29fe85ffc337456bb079698ee42ef9d7?v=8cebb3b6b1f048e68c33f7e0720714e0')
-    
-    for row in cv.collection.get_rows():
-        print(row.last_contact.start)
+ return jsonify({'done': 'true'}), 201
 
 
 # @crossdomain(origin='*', headers=['access-control-allow-origin', 'Content-Type'])

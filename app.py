@@ -20,8 +20,8 @@ def hello():
 @cross_origin()
 def create_row():
     content = request.get_json()
-    if 'email' not in content:
-        return jsonify({'error': 'false'}), 400
+    # if 'email' not in content:
+        # return jsonify({'error': 'false'}), 400
     
     company = content.get('company')
     contact = content.get('contact')

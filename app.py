@@ -20,6 +20,8 @@ def hello():
 @cross_origin()
 def create_row():
     content = request.get_json()
+    if 'company' not in content:
+        return jsonify({'error': 'false'}), 400
     
     company = content.get('company')
     contact = content.get('contact')
@@ -34,7 +36,7 @@ def create_row():
         'https://www.notion.so/madebyarticle/29fe85ffc337456bb079698ee42ef9d7?v=8cebb3b6b1f048e68c33f7e0720714e0')
     
     row = cv.collection.add_row()
-    row.icon = '🐍'
+    row.icon = '🤖'
     row.company = company
     row.contact = contact
     row.email = email

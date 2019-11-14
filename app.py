@@ -21,8 +21,9 @@ def hello():
 def create_row():
     content = request.get_json()
     if 'email' not in content:
-        return jsonify({'error': 'false'}), 400
+        abort(400)
     
+    # if 'email' in content:
     company = content.get('company')
     contact = content.get('contact')
     email = content.get('email')

@@ -1,12 +1,13 @@
+import re
+import sys
+import json
+
 from datetime import date
 from flask import Flask, request, abort, jsonify, redirect
 from flask_cors import CORS, cross_origin
 from notion.client import NotionClient
 from notion.block import TextBlock
 from notion.collection import NotionDate
-
-import sys
-import json
 
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -31,6 +32,9 @@ def create_row():
         contact = content.get('contact')
         email = content.get('email')
         desc = content.get('description')
+        budget = content.get('budget')
+        firstTier = budget[1:2] # accepts $10-25k, so we take the 1 and 2 index 
+        estimatedValue = firstTier + '000' 
         newDate = NotionDate(date.today())
         status = 'Lead'
 
@@ -45,6 +49,7 @@ def create_row():
         row.contact = contact
         row.email = email
         row.last_contact = newDate
+        row.estimated_value = int(estimatedValue)
         row.status = status
         row.children.add_new(TextBlock, title=desc)
 

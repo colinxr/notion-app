@@ -33,7 +33,7 @@ def create_row():
         email = content.get('email')
         desc = content.get('description')
         budget = content.get('budget')
-        firstTier = budget[1:2] # accepts $10-25k, so we take the 1 and 2 index 
+        firstTier = budget[1:3] # accepts $10-25k, so we take the 1 and 2 index 
         estimatedValue = firstTier + '000' 
         newDate = NotionDate(date.today())
         status = 'Lead'

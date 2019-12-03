@@ -50,6 +50,11 @@ def create_row():
 
         return jsonify({'done': 'true'}), 201
 
+
+@app.errorhandler(500)
+def internal_error(error):
+    return "500 error"
+
 @app.errorhandler(404)
 def page_not_found(error):
     ip = request.environ['REMOTE_ADDR']
